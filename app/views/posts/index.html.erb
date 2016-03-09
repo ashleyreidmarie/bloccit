@@ -1,4 +1,7 @@
 <h1>All Posts</h1>
+<div>
+  <%= link_to "Create New Post", "/posts/new", class: 'btn btn-primary' %>
+</div>
 <% @posts.each do |post| %>
   <div class="media">
     <div class="media-body">

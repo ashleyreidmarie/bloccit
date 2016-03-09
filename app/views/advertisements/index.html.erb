@@ -1,0 +1,16 @@
+<h1>All Advertisements</h1>
+<div>
+  <%= link_to "Create New Advertisement", "/advertisements/new", class: 'btn btn-primary' %>
+</div>
+<% @advertisements.each do |ad| %>
+  <div class="media">
+    <div class="media-bodyd">
+      <h4 class="media-heading">
+        <%= link_to ad.title, ad %>
+      </h4>
+      <p>
+        <%= "$#{ad.price}" %>
+      </p>
+    </div>
+  </div>
+<% end %>

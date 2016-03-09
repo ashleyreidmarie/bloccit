@@ -27,6 +27,16 @@ Comment.find_or_create_by(
   body: "Unique Body"
   )
 
+#Create Advertisements
+10.times do
+  Advertisement.create!(
+    title: RandomData.random_sentence,
+    body:  RandomData.random_paragraph,
+    price: RandomData.random_number
+    )
+end
+    
 puts "Seed finished"
 puts "#{Post.count} posts create"
 puts "#{Comment.count} comments created"
+puts "#{Advertisement.count} Advertisements created"
