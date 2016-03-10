@@ -35,8 +35,17 @@ Comment.find_or_create_by(
     price: RandomData.random_number
     )
 end
+
+10.times do
+  Question.create!(
+    title: RandomData.random_sentence,
+    body:  RandomData.random_paragraph,
+    resolved: false
+    )
+end
     
 puts "Seed finished"
 puts "#{Post.count} posts create"
 puts "#{Comment.count} comments created"
-puts "#{Advertisement.count} Advertisements created"
+puts "#{Question.count} questions create"
+puts "#{Advertisement.count} advertisements created"
