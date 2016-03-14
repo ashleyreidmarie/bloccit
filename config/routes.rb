@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
   
+#Checkpoints
+ resources :topics do
+   resources :posts, except: [:index]
+ end
+
+#Assignments
  resources :questions
-
  resources :advertisements
-  
- resources :posts
-
+ 
   get 'about' => 'welcome#about'
   
   get 'contact' => 'welcome#contact'

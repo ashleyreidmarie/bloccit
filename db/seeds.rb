@@ -1,8 +1,18 @@
 require 'random_data'
 
+#Create Topics
+15.times do
+  Topic.create!(
+    name:        RandomData.random_sentence,
+    description: RandomData.random_paragraph
+    )
+end
+topics = Topic.all
+
 #Create Posts
 50.times do
   Post.create!(
+    topic: topics.sample,
     title: RandomData.random_sentence,
     body:  RandomData.random_paragraph
     )
@@ -10,7 +20,6 @@ end
 posts = Post.all
 
 #Create Comments
-
 100.times do
   Comment.create!(
     post: posts.sample,
@@ -18,6 +27,7 @@ posts = Post.all
     )
 end
 
+#Create Unique Post and Unique Comment
 unique_post = Post.find_or_create_by(
   title: "Unique Title",
   body:  "Unique Body"
@@ -36,6 +46,7 @@ Comment.find_or_create_by(
     )
 end
 
+#Create Questions
 10.times do
   Question.create!(
     title: RandomData.random_sentence,
@@ -45,6 +56,7 @@ end
 end
     
 puts "Seed finished"
+puts "#{Topic.count} topics created"
 puts "#{Post.count} posts create"
 puts "#{Comment.count} comments created"
 puts "#{Question.count} questions create"
