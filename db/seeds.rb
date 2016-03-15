@@ -28,36 +28,48 @@ posts = Post.all
 end
 
 #Create Unique Post and Unique Comment
-unique_post = Post.find_or_create_by(
-  title: "Unique Title",
-  body:  "Unique Body"
-  )
-Comment.find_or_create_by(
-  post: unique_post,
-  body: "Unique Body"
-  )
+# unique_post = Post.find_or_create_by(
+#   title: "Unique Title",
+#   body:  "Unique Body"
 
-#Create Advertisements
-10.times do
-  Advertisement.create!(
+#   )
+# Comment.find_or_create_by(
+#   post: unique_post,
+#   body: "Unique Body"
+#   )
+
+#Create SponsoredPosts
+25.times do
+  SponsoredPost.create!(
     title: RandomData.random_sentence,
     body:  RandomData.random_paragraph,
-    price: RandomData.random_number
+    price: RandomData.random_number,
+    topic: topics.sample
     )
 end
 
-#Create Questions
-10.times do
-  Question.create!(
-    title: RandomData.random_sentence,
-    body:  RandomData.random_paragraph,
-    resolved: false
-    )
-end
+# #Create Advertisements
+# 10.times do
+#   Advertisement.create!(
+#     title: RandomData.random_sentence,
+#     body:  RandomData.random_paragraph,
+#     price: RandomData.random_number
+#     )
+# end
+
+# #Create Questions
+# 10.times do
+#   Question.create!(
+#     title: RandomData.random_sentence,
+#     body:  RandomData.random_paragraph,
+#     resolved: false
+#     )
+# end
     
 puts "Seed finished"
 puts "#{Topic.count} topics created"
 puts "#{Post.count} posts create"
 puts "#{Comment.count} comments created"
-puts "#{Question.count} questions create"
-puts "#{Advertisement.count} advertisements created"
+puts "#{SponsoredPost.count} sponsored posts created"
+# puts "#{Question.count} questions create"
+# puts "#{Advertisement.count} advertisements created"

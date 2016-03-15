@@ -25,6 +25,6 @@ module RandomData
   end
   
   def self.random_number
-    rand(1.0..100.0).round(2)
+    rand(1..100).round(2)
   end
 end  
