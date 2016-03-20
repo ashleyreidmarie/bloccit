@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  before_save { self.name = self.name.split(" ").map(&:capitalize).join(" ") if name }
+  #before_save { self.name = self.name.split(" ").map(&:capitalize).join(" ") if name }
   before_save { self.email = email.downcase }
 
   
