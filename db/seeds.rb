@@ -33,6 +33,7 @@ posts = Post.all
 #Create Comments
 100.times do
   Comment.create!(
+    user: users.sample,
     post: posts.sample,
     body: RandomData.random_paragraph
     )
@@ -50,14 +51,14 @@ end
 #   )
 
 #Create SponsoredPosts
-25.times do
-  SponsoredPost.create!(
-    title: RandomData.random_sentence,
-    body:  RandomData.random_paragraph,
-    price: RandomData.random_number,
-    topic: topics.sample
-    )
-end
+# 25.times do
+#   SponsoredPost.create!(
+#     title: RandomData.random_sentence,
+#     body:  RandomData.random_paragraph,
+#     price: RandomData.random_number,
+#     topic: topics.sample
+#     )
+# end
 
 # #Create Advertisements
 # 10.times do
@@ -97,6 +98,6 @@ puts "#{User.count} users created"
 puts "#{Topic.count} topics created"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
-puts "#{SponsoredPost.count} sponsored posts created"
+# puts "#{SponsoredPost.count} sponsored posts created"
 # puts "#{Question.count} questions create"
 # puts "#{Advertisement.count} advertisements created"
