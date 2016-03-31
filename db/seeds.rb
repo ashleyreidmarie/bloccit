@@ -39,6 +39,14 @@ posts = Post.all
     )
 end
 
+100.times do
+  Comment.create!(
+    user: users.sample,
+    topic: topics.sample,
+    body: RandomData.random_paragraph
+    )
+end
+
 #Create Unique Post and Unique Comment
 # unique_post = Post.find_or_create_by(
 #   title: "Unique Title",
