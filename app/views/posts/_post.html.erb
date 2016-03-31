@@ -2,10 +2,11 @@
   <div class="media-body">
     <h4 class="media-heading">
       <%= link_to post.title, topic_post_path(@topic, post) %>
+      <%= render partial: "labels/list", locals: { labels: post.labels } %>
+    </h4>
       <small>
         Submitted <%= time_ago_in_words(post.created_at) %> ago by <%= post.user.name %> <br>
         <%= post.comments.count %> Comments
       </small>
-    </h4>
   </div>
 </div>
