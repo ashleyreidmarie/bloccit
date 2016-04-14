@@ -30,7 +30,7 @@ RSpec.describe VotesController, type: :controller do
       request.env["HTTP_REFERER"] = topic_post_path(my_topic, user_post)
     end
     
-    it "the sers first vote increases number of post votes by one" do
+    it "the users first vote increases number of post votes by one" do
       votes = user_post.votes.count
       post  :up_vote, post_id: user_post.id
       expect(user_post.votes.count).to eq(votes + 1)
