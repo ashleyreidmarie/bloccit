@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>You are now following "<%= @post.title %>"</h1>
+    <small>
+      <%= @post.body %>
+    </small>
+    <p>
+      You will be notified every time a new comment is added to this post.
+    </p>
+    <p>
+      <%= link_to "View Post On Bloccit", topic_post_url(@post.topic, @post) %>
+    </p>
+  </body>
+</html>

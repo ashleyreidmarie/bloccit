@@ -93,4 +93,11 @@ RSpec.describe Post, type: :model do
   
   end
   
+  describe "after_create" do
+    it "sends an email to user who creates post" do
+      another_post = user.posts.new(title: RandomData.random_sentence, body: RandomData.random_paragraph, topic: topic)
+      expect(FavoriteMailer).to receive(:new_post).with(another_post).and_return(double(deliver_now: true))
+      another_post.save!
+    end
+  end
 end
