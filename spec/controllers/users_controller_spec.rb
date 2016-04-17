@@ -20,6 +20,7 @@ RSpec.describe UsersController, type: :controller do
       get :new
       expect(assigns(:user)).not_to be_nil
     end
+    
   end
   
   describe "POST create" do
@@ -60,7 +61,7 @@ RSpec.describe UsersController, type: :controller do
     end
   end
   
-  describe "not signed in" do
+  describe "get SHOW" do
     let(:factory_user) { create(:user) }
     
     before do
@@ -81,5 +82,12 @@ RSpec.describe UsersController, type: :controller do
       get :show, {id: factory_user.id}
       expect(assigns(:user)).to eq(factory_user)
     end
+    
+    it "instantiates favorites" do
+      get :show, {id: factory_user.id}
+      expect(assigns(:favorites)).to eq(factory_user.favorites)
+    end
   end
+  
+
 end

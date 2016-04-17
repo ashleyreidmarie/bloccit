@@ -1,0 +1,10 @@
+<div class="row">
+  <div class="pull-right favorites">
+    <%= link_to image_tag(favorite.post.user.avatar_url(48)), user_path(favorite.post.user) %>
+  </div>
+  <p class="favorite-info"><%= link_to truncate(favorite.post.title, :length => 35), topic_post_path(favorite.post.topic, favorite.post) %></p>
+  <small class="favorite-info">
+    <%= pluralize(favorite.post.votes.count, 'vote') %>
+    <%= pluralize(favorite.post.comments.count, 'comment') %>        
+  </small>
+</div>
