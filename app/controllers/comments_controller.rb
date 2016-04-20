@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
     if @comment.save
       flash[:notice] = "Comment saved successfully."
     else
-      flash[:alert] = "Comment field to save."
+      flash[:alert] = "Comment failed to save."
     end
     
     respond_to do |format|
