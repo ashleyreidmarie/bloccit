@@ -35,7 +35,7 @@ RSpec.describe Topic, type: :model do
   describe "scopes" do
     before do
       @public_topic = create(:topic)
-      @private_topoic = create(:topic, public: false)
+      @private_topic = create(:topic, public: false)
     end
     
     describe "visible_to(user)" do
@@ -48,6 +48,19 @@ RSpec.describe Topic, type: :model do
         expect(Topic.visible_to(nil)).to eq([@public_topic])
       end
     end
- end
+    
+    describe "publicly_viewable" do
+
+      it "returns all public topics" do
+        expect(Topic.publicly_viewable).to eq([@public_topic])
+      end
+    end
+    
+    describe "privately_viewable" do
+      it "returns all private topics" do
+        expect(Topic.privately_viewable).to eq([@private_topic])
+      end
+    end
+  end
 
 end
