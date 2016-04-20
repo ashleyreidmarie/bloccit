@@ -87,6 +87,15 @@ RSpec.describe UsersController, type: :controller do
       get :show, {id: factory_user.id}
       expect(assigns(:favorites)).to eq(factory_user.favorites)
     end
+    
+    context "for a user with no posts" do
+      let(:user) { create(:user) }
+      
+      it "@posts is empty" do
+        get :show, {id: user.id}
+        expect(assigns(:posts)).to be_empty
+      end
+    end
   end
   
 

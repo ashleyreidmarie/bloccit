@@ -32,15 +32,4 @@ class User < ActiveRecord::Base
     "http://gravatar.com/avatar/#{gravatar_id}.png?s=#{size}"
   end
   
-  def has_comments?
-    true if self.comments
-  end
-  
-  def has_posts?
-    true if self.posts
-  end
-  
-  def has_favorites?
-    true if self.favorites
-  end
 end
