@@ -1,6 +1,7 @@
 class Api::V1::PostsController < Api::V1::BaseController
   before_action :authenticate_user, except: [:index, :show]
-  before_action :authorize_user, except: [:index, :show]
+  before_action :authorize_for_post, only: [:update, :destroy]
+
   
   def index
     posts = Post.all
@@ -12,4 +13,55 @@ class Api::V1::PostsController < Api::V1::BaseController
     render json: post, status: 200
   end
   
+  def create
+    post = Post.new(post_params)
+    post.user = @current_user
+    post.topic = Topic.find(params[:topic_id])
+    
+    
+    if post.valid?
+      post.save!
+      render json: post, status: 201
+    else
+      p post.errors
+      render json: {error: "Post is invalid", status: 400}, status: 400
+    end
+  end
+  
+  def update
+    post = Post.find(params[:id])
+    
+    if post.valid?
+      post.update_attributes(post_params)
+      render json: post, status: 200
+    else
+      render json: { error: "Post is invalid", status: 400}, status: 400
+    end
+    
+  end
+  
+  def destroy
+    post = Post.find(params[:id])
+    
+    if post.destroy
+      render json: {message: "Post destroyed", status: 200}, status: 200
+    else
+      render json: {error: "Post destroy failed", status: 400}, status: 400
+    end
+  
+    
+  end
+  
+  
+  private
+  
+  def post_params
+    params.require(:post).permit(:title, :body)
+  end
+  
+  def authorize_for_post
+    unless @current_user == Post.find(params[:id]).user || @current_user.admin?
+      render json: {error: "User unauthorized for post", status: 403}, status: 403
+    end
+  end
 end
